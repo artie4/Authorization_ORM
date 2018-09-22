@@ -2,3 +2,5 @@
 target
 h2db.mv.db
 h2db.trace.db
+server.jar
+task.txt

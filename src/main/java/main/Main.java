@@ -14,29 +14,23 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import servlets.SignInServlet;
 import servlets.SignUpServlet;
 
-/**
- * @author v.chibrikov
- *         <p>
- *         Пример кода для курса на https://stepic.org/
- *         <p>
- *         Описание курса и лицензия: https://github.com/vitaly-chibrikov/stepic_java_webserver
- */
+
 public class Main {
     public static void main(String[] args) throws Exception {
 
         DBService dbService = new DBService();
         dbService.printConnectInfo();
-
-        try {
-            long userId = dbService.addNewUser("tully", "test");
-            System.out.println("Added user id: " + userId);
-
-            UsersDataSet dataSet = dbService.getUser(userId);
-            System.out.println("User data set: " + dataSet);
-
-        } catch (DBException e) {
-            e.printStackTrace();
-        }
+//
+//        try {
+//            long userId = dbService.addNewUser("tully", "test");
+//            System.out.println("Added user id: " + userId);
+//
+//            UsersDataSet dataSet = dbService.getUser(userId);
+//            System.out.println("User data set: " + dataSet);
+//
+//        } catch (DBException e) {
+//            e.printStackTrace();
+//        }
 
         //create accountService instance
         AccountService accountService = new AccountService();
