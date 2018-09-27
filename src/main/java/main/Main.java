@@ -4,6 +4,7 @@ package main;
 import accounts.AccountService;
 import dbService.DBException;
 import dbService.DBService;
+import dbService.DBServiceImpl;
 import dbService.dataSets.UsersDataSet;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
@@ -18,7 +19,7 @@ import servlets.SignUpServlet;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        DBService dbService = new DBService();
+        DBService dbService = new DBServiceImpl();
         dbService.printConnectInfo();
 //
 //        try {

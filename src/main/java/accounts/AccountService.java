@@ -2,6 +2,7 @@ package accounts;
 
 import dbService.DBException;
 import dbService.DBService;
+import dbService.DBServiceImpl;
 import dbService.dataSets.UsersDataSet;
 
 import java.util.HashMap;
@@ -15,21 +16,16 @@ import java.util.Map;
  *         Описание курса и лицензия: https://github.com/vitaly-chibrikov/stepic_java_webserver
  */
 public class AccountService {
-    private final Map<String, UserProfile> loginToProfile;
+
     private final Map<String, UserProfile> sessionIdToProfile;
 
     public AccountService() {
-        loginToProfile = new HashMap<>();
         sessionIdToProfile = new HashMap<>();
     }
 
-//    public void addNewUser(UserProfile userProfile) {
-//        loginToProfile.put(userProfile.getLogin(), userProfile);
-//    }
-
     public void addNewUser(UserProfile userProfile) {
 
-        DBService dbService = new DBService();
+        DBService dbService = new DBServiceImpl();
         try {
             dbService.addNewUser(userProfile.getLogin(), userProfile.getPass());
         }
@@ -38,13 +34,9 @@ public class AccountService {
         }
     }
 
-//    public UserProfile getUserByLogin(String login) {
-//        return loginToProfile.get(login);
-//    }
-
     public UserProfile getUserByLogin(String login) {
 
-        DBService dbService = new DBService();
+        DBService dbService = new DBServiceImpl();
         UserProfile userProfile = null;
         try {
 

@@ -7,6 +7,7 @@ package servlets;
 
 import accounts.AccountService;
 import accounts.UserProfile;
+import com.sun.istack.internal.Nullable;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -40,12 +41,24 @@ public class SignUpServlet extends HttpServlet {
         String password = request.getParameter("password");
         response.setContentType("text/html;charset=utf-8");
 
-        if (login != null) {
+
+        if (login.equals("") || password.equals("")) {
+            response.setStatus(HttpServletResponse.SC_PAYMENT_REQUIRED);
+            response.getWriter().println("Логин/пароль не могут быть пустыми");
+            return;
+        }
+
+        UserProfile profile = accountService.getUserByLogin(login);
+        if (profile != null) {
+            response.setContentType("text/html;charset=utf-8");
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().println("Пользователь с : " + login + " уже существует");
+        }
+        else {
             accountService.addNewUser(new UserProfile(login, password));
             response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().println("Пользователь " + login + " успешно создан");
         }
-        
     }
     
 }
